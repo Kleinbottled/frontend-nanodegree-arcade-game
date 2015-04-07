@@ -1,3 +1,6 @@
+var ranNumber = function(lowerNum, higherNum) {
+    return Math.floor(Math.random() * (higherNum - lowerNum + 1)) + lowerNum;
+}
 // Enemies our player must avoid
 var Enemy = function() {
     // Variables applied to each of our instances go here,
@@ -6,6 +9,9 @@ var Enemy = function() {
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
+    this.x = ranNumber(1, 4) * -101;
+    this.y = (ranNumber(1, 3) * 83) - 25;
+    this.speed = ranNumber(101, 202);
 }
 
 // Update the enemy's position, required method for game
@@ -14,6 +20,11 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
+    if (this.x > 506) {
+        this.x = ranNumber(1, 4) * -101;
+        this.y = (ranNumber(1, 3) * 83) - 25;        
+    }
+    this.x += this.speed * dt;
 }
 
 // Draw the enemy on the screen, required method for game
@@ -30,7 +41,10 @@ Enemy.prototype.render = function() {
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
 
-
+var allEnemies = [];
+for(var i = 0; i < 5; i++) {
+    allEnemies.push(new Enemy());
+}
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
