@@ -1,7 +1,6 @@
 var ranNumber = function(lowerNum, higherNum) {
     return Math.floor(Math.random() * (higherNum - lowerNum + 1)) + lowerNum;
 }
-/* Enemies our player must avoid */
 
 var Enemy = function() {
     
@@ -10,8 +9,6 @@ var Enemy = function() {
     this.y = (ranNumber(1, 3) * 83) - 25;
     this.speed = ranNumber(101, 202);
 }
-
-/* Update the enemy's position. Parameter: dt, a time delta between ticks */
 
 Enemy.prototype.update = function(dt) {
     if (this.x > 506) {
@@ -74,9 +71,6 @@ for(var i = 0; i < 5; i++) {
 
 var player = new Player();
 
-/* This listens for key presses and sends the keys to the
- Player.handleInput() method. */
- 
 document.addEventListener('keyup', function(e) {
     var allowedKeys = {
         37: 'left',
